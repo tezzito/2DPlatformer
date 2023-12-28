@@ -10,6 +10,8 @@ public class Hero : MonoBehaviour
     [SerializeField] private float jumpForce = 15f; //сила прыжка   
     public bool isGrounded = false;
 
+    public bool game = true;
+    public APITest api;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sprite;
@@ -72,7 +74,10 @@ public class Hero : MonoBehaviour
 
     public void Finish()
     {
+        if (!game) return;
+        game = false;
         timer.timerIsRunnig = false;
+        api.SendResult(timer.passedTime);
     }
 }
 
