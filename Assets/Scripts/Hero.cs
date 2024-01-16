@@ -32,13 +32,13 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -15) SceneManager.LoadScene(0);
+        if (transform.position.y < -15) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         if (Input.GetButton("Horizontal"))
             Run();
         else if (isGrounded) anim.SetInteger("state", 0);
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
             Jump();
     }
 
