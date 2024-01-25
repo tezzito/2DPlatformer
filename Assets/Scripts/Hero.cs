@@ -32,8 +32,7 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -15) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+        if (transform.position.y < -15) Die();
         if (Input.GetButton("Horizontal"))
             Run();
         else if (isGrounded) anim.SetInteger("state", 0);
@@ -78,6 +77,11 @@ public class Hero : MonoBehaviour
         game = false;
         timer.timerIsRunnig = false;
         api.SendResult(timer.passedTime);
+    }
+
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 
