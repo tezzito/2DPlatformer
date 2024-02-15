@@ -7,7 +7,7 @@ public class HPhud : MonoBehaviour
 {
     public TMPro.TMP_Text HP;
     bool Un = false;
-    int hp = 3;
+    int hp = 1;
 
     void Start()
     {
