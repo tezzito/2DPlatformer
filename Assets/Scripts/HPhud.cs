@@ -6,33 +6,23 @@ using UnityEngine.SceneManagement;
 public class HPhud : MonoBehaviour
 {
     public TMPro.TMP_Text HP;
-    bool Un = false;
-    int hp = 1;
+    public float LastDamage;
+    public int hp = 3;
 
     void Start()
     {
         HP.text = hp.ToString();
+        LastDamage = Time.time;
     }
 
-
-    public void UnSec()
-    {
-        Un = false;
-    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "danger" && Un == false)
+        if (collision.gameObject.tag == "danger" && Time.time - LastDamage > 0.5f)
         {
-            if (hp == 1)
-            {
-                SceneManager.LoadScene(3);
-            }
-            hp--;
-            Un = true;
+            if (--hp <= 0) SceneManager.LoadScene(0);
+            LastDamage = Time.time;
             HP.text = hp.ToString();
-            Invoke("UnSec", 0.5f);
-            Debug.Log("AHHAHAHHAHA");
         }
     }
 
